@@ -32,7 +32,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y curl git sudo ap
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Install Composer
-RUN curl https://getcomposer.org/download/2.1.12/composer.phar --output /usr/bin/composer && chmod +x /usr/bin/composer
+RUN curl https://getcomposer.org/download/2.8.4/composer.phar --output /usr/bin/composer && chmod +x /usr/bin/composer
 RUN curl https://files.magerun.net/n98-magerun2.phar --output /usr/bin/n98-magerun2.phar && chmod +x /usr/bin/n98-magerun2.phar
 
 # Install Node.js and Grunt CLI
@@ -51,6 +51,15 @@ RUN su - nginx -c "echo '[ -s /home/nginx/.nvm/nvm.sh ] && . /home/nginx/.nvm/nv
 # Xdebug configuration
 RUN unlink /etc/php/8.2/cli/conf.d/20-xdebug.ini && \
     unlink /etc/php/8.2/fpm/conf.d/20-xdebug.ini
+
+# # Install dependencies for mcrypt
+# RUN apt-get update && apt-get install -y libmcrypt-dev
+
+# # Install mcrypt via PECL
+# RUN pecl install mcrypt-1.0.5 && docker-php-ext-enable mcrypt
+
+# # Clean up
+# RUN apt-get clean && rm -rf /var/lib/apt/lists/
 
 RUN pecl channel-update pecl.php.net
 

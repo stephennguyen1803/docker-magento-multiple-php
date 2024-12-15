@@ -150,7 +150,7 @@ services:
       - 8025:8025
 
   redis:
-      image: "redis:6.0-alpine"
+      image: "redis:7.2-alpine"
       ports:
         - "127.0.0.1:6379:6379"
       sysctls:
@@ -169,13 +169,15 @@ services:
           - node.name=elasticseach
           - cluster.name=es-docker-cluster
           - bootstrap.memory_lock=true
+          - xpack.security.enabled=true
+          - xpack.security.http.ssl.enabled=false
           - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
       ulimits:
           memlock:
               soft: -1
               hard: -1
       volumes:
-          - elasticsearch-data:/usr/share/elasticsearch/data
+          - .data/elasticsearch:/usr/share/elasticsearch/data
       ports:
           - 9200:9200
 
@@ -232,6 +234,6 @@ services:
 volumes: 
   composer_cache:
   composer_cache_file:
-  elasticsearch-data:
+  # elasticsearch-data:
   redis_data:
   rabbitmq-data:
