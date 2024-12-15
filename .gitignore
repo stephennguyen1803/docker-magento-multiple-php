@@ -11,6 +11,7 @@
 !/data/.keepme
 !/data/mysql/.keepme
 /data/mysql/*
+/data/elasticsearch/*
 /databases/*
 !/databases/.keepme
 /databases/import/*
