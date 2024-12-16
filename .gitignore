@@ -20,3 +20,4 @@
 !/databases/export
 !/databases/import/.keepme
 !/databases/export/.keepme
+.data/*

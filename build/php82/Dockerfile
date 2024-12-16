@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:20.04
+FROM arm64v8/ubuntu:22.04
 
 # Install necessary packages
 RUN apt-get update && \
